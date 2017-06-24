@@ -1,0 +1,14 @@
+{
+  "name": "real-time-web-with-node",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/npm/npm.git"
+  },
+  "author": "fredericochopin@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "connect": "~2.2.1",
+    "underscore": "~1.3.3"
+  }
+}

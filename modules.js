@@ -1,0 +1,3 @@
+/*
+MODULES are used to expose bits of functionality throughout our application.
+*/

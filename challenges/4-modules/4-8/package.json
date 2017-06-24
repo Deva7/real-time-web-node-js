@@ -1,0 +1,8 @@
+{
+  "name": "My Awesome Node App",
+  "version": "1",
+  "dependencies": {
+    "connect": "~2.2.1", //stays up to date with the latest changes to this dependency
+    "underscore": "~1.3.3"
+  }
+}
