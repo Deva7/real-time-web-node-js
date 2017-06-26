@@ -1,0 +1,29 @@
+<html>
+<head>
+</head>
+<body>
+<script src="/modules/socket.io-client/dist/socket.io.js"></script>
+<script src="/modules/jquery/dist/jquery.js"></script>
+<form id="chat_form">
+    <input type="text" id="chat_input" />
+    <input type="button" id="send_message" value="SEND"/>
+</form>
+<textarea id="conversation"></textarea>
+<script>
+    var socket = io.connect('http://localhost:8080');
+    socket.on('connect', function(data){
+       var nickname = prompt("What's your nickname?");
+       socket.emit('join', nickname);
+    });
+    //listen for 'messages' event
+    socket.on('messages', function(data){
+        $('#conversation').val($('#conversation').val() + ($('#conversation').val() !== '' ? '\r\n' : '') + data);
+    });
+    $('#send_message').click(function(e){
+        var message = $('#chat_input').val();
+        //emit the 'messages' event on the server
+        socket.emit('messages', message);
+    });
+</script>
+</body>
+</html>
