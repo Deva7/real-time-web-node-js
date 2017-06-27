@@ -9,8 +9,9 @@
     <input type="button" id="send_message" value="SEND"/>
 </form>
 <textarea id="conversation"></textarea>
+<ul id="chatters"></ul>
 <script>
-    var socket = io.connect('http://localhost:8080');
+    var socket = io.connect('http://localhost:15688');
     socket.on('connect', function (data) {
         var nickname = prompt("What's your nickname?");
         socket.emit('join', nickname);
@@ -19,11 +20,21 @@
     socket.on('messages', function (data) {
         $('#conversation').val($('#conversation').val() + ($('#conversation').val() !== '' ? '\r\n' : '') + data);
     });
+    socket.on('add chatter', function(name){
+       var chatter = $('<li>' + name + '</li>').data('name', name);
+       $('#chatters').append(chatter);
+    });
+
+    socket.on('remove chatter', function(name){
+       $('#chatters li[data-name=]' + name + ']').remove();
+    });
+
     $('#send_message').click(function (e) {
         var message = $('#chat_input').val();
         //emit the 'messages' event on the server
         socket.emit('messages', message);
     });
+
 </script>
 </body>
 </html>
